@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Grow the Mo or Mow the Mo? Every dollar is a vote. Whichever side raises more for Movember by 30 November decides my moustache’s fate.">
+<meta property="og:title" content="The Great Mo Showdown">
+<meta property="og:description" content="Grow the Mo or Mow the Mo? Every dollar is a vote for Movember.">
+<meta property="og:image" content="assets/great-mo-showdown-still.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Great Mo Showdown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-800:#4f7100; --green-700:#5f8800; --green-600:#6fa200; --green-500:#82bc00; --green-400:#9dca40; --green-100:#eef6dd;
+  --grey-950:#1b1c1c; --grey-900:#2e2f30; --grey-800:#404142; --grey-700:#58595b; --grey-600:#6f7072; --grey-500:#97989b;
+  --grey-300:#d0d1d2; --grey-200:#e6e7e8; --grey-100:#f0f0f0; --grey-50:#f7f8f8;
+
+  --page:var(--grey-100); --card:#ffffff; --border:var(--grey-200);
+  --heading:var(--grey-900); --body:var(--grey-700); --muted:var(--grey-600);
+  --ink:var(--green-700);                 /* green text on light */
+  --grow-fill:var(--green-500); --grow-fill-hover:var(--green-600); --on-grow:#ffffff;
+  --mow-fill:var(--grey-900); --mow-fill-hover:var(--grey-800); --on-mow:#ffffff;
+  --mow-ink:var(--grey-900);
+  --hero:var(--grey-900); --on-dark:#ffffff; --on-dark-dim:rgba(255,255,255,0.8); --on-dark-mute:rgba(255,255,255,0.62);
+  --focus:rgba(130,188,0,0.28);
+  --shadow-sm:0 1px 2px rgba(88,89,91,0.08),0 1px 3px rgba(88,89,91,0.10);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --page:var(--grey-950); --card:var(--grey-900); --border:var(--grey-800);
+    --heading:#ffffff; --body:var(--grey-300); --muted:var(--grey-500);
+    --ink:var(--green-400);
+    --mow-fill:var(--grey-200); --mow-fill-hover:#ffffff; --on-mow:var(--grey-900); --mow-ink:var(--grey-200);
+    --hero:var(--grey-900);
+    --shadow-sm:none;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --page:var(--grey-950); --card:var(--grey-900); --border:var(--grey-800);
+  --heading:#ffffff; --body:var(--grey-300); --muted:var(--grey-500);
+  --ink:var(--green-400);
+  --mow-fill:var(--grey-200); --mow-fill-hover:#ffffff; --on-mow:var(--grey-900); --mow-ink:var(--grey-200);
+  --shadow-sm:none;
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--page);color:var(--body);font-family:"Raleway","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:var(--ink);text-underline-offset:3px}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--focus),0 0 0 1px var(--green-500)}
+h1,h2,h3{font-weight:800;letter-spacing:-0.01em;line-height:1.2;color:var(--heading);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:24px}
+
+/* Hero: dark band, triangles at 14%, 3px green rule */
+.hero{background:var(--hero);color:var(--on-dark);position:relative;overflow:hidden;border-bottom:3px solid var(--green-500)}
+.hero .tri{position:absolute;right:-60px;top:-14px;width:min(46vw,420px);opacity:.14;pointer-events:none}
+.hero .wrap{position:relative;padding-block:28px 56px}
+.logo{height:46px;width:auto}
+.eyebrow{display:flex;align-items:center;gap:10px;margin:40px 0 18px;font-weight:700;font-size:15px;color:var(--on-dark-dim)}
+.eyebrow::before,.bullet::before{content:"";width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--green-500);flex:none}
+.hero h1{color:#fff;font-size:clamp(44px,8.4vw,92px);line-height:1.02}
+.hero h1 span{display:block}
+.hero h1 .g{color:var(--green-400)}
+.hero h1 .d{color:var(--on-dark-mute)}
+.lede{max-width:36em;margin:24px 0 0;font-size:19px;color:var(--on-dark-dim)}
+.clock{display:flex;gap:28px;margin-top:36px}
+.clock b{display:block;font-size:clamp(32px,6vw,46px);font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.clock small{font-size:13px;font-weight:600;color:var(--on-dark-mute)}
+.clock-note{margin:12px 0 0;font-size:14px;color:var(--on-dark-mute)}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-sm)}
+.rule{border-top:3px solid var(--green-500)}
+
+.score{margin-top:-28px;position:relative;padding:28px 28px 24px}
+.score h2{font-size:26px;margin-bottom:22px}
+.tug{position:relative;height:56px;border-radius:6px;display:flex;overflow:visible;background:var(--grey-200)}
+.tug .fg,.tug .fm{height:100%;transition:width 1.2s ease}
+.tug .fg{background:var(--grow-fill);border-radius:6px 0 0 6px}
+.tug .fm{background:var(--mow-fill);border-radius:0 6px 6px 0;margin-left:auto}
+.tug .knot{position:absolute;top:50%;transform:translate(-50%,-50%);width:112px;transition:left 1.2s ease}
+@media (prefers-reduced-motion:reduce){.tug .fg,.tug .fm,.tug .knot{transition:none}}
+.totals{display:flex;justify-content:space-between;gap:16px;margin-top:16px}
+.totals small{display:block;font-size:14px;font-weight:700;color:var(--muted)}
+.totals span{font-size:clamp(30px,5vw,40px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.totals .g span{color:var(--ink)} .totals .m span{color:var(--mow-ink)}
+.totals .m{text-align:right}
+.status{margin:18px 0 2px;font-weight:700;font-size:17px;color:var(--heading)}
+.updated{margin:0;font-size:14px;color:var(--muted)}
+
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-block:32px}
+.team{overflow:hidden;display:flex;flex-direction:column}
+.team img{width:100%;aspect-ratio:1;object-fit:cover}
+.team .body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1;border-top:3px solid var(--green-500)}
+.team h3{font-size:26px}
+.team p{margin:8px 0 20px;flex:1}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 20px;border-radius:4px;font-weight:700;font-size:16px;text-decoration:none;transition:background 120ms ease}
+.btn:hover{text-decoration:none}
+.grow .btn{background:var(--grow-fill);color:var(--on-grow)} .grow .btn:hover{background:var(--grow-fill-hover);color:var(--on-grow)}
+.mow .btn{background:var(--mow-fill);color:var(--on-mow)} .mow .btn:hover{background:var(--mow-fill-hover);color:var(--on-mow)}
+.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+
+.info{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-bottom:48px}
+.info .card{padding:26px 28px}
+.info h2{font-size:21px;margin-bottom:12px}
+.info ul{list-style:none;margin:0;padding:0}
+.info li{display:flex;gap:12px;margin:8px 0}
+.info li::before{content:"";flex:none;margin-top:8px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:7px solid var(--green-500)}
+.info p{margin:0 0 10px}
+
+.foot{background:var(--grey-900);color:var(--on-dark);border-top:3px solid var(--green-500)}
+.foot .wrap{padding-block:36px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+.foot p{margin:0;color:var(--on-dark-dim)}
+.foot a{color:var(--green-400)}
+.foot button{font:inherit;font-weight:700;min-height:52px;padding:0 22px;border:0;border-radius:4px;background:var(--green-500);color:#fff;cursor:pointer;transition:background 120ms ease}
+.foot button:hover{background:var(--green-600)}
+.copied{display:block;min-height:1.4em;margin-top:6px;font-size:14px;color:var(--on-dark-mute)}
+
+@media (max-width:760px){
+  .teams,.info{grid-template-columns:1fr}
+  .hero .tri{width:300px;right:-90px}
+  .eyebrow{margin-top:28px}
+  .clock{gap:20px}
+  .score{padding:22px 20px 20px}
+  .tug .knot{width:84px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="tri" src="assets/triangles.svg" alt="">
+  <div class="wrap">
+    <p class="eyebrow">The Great Mo Showdown for Movember</p>
+    <h1><span class="g">Grow the Mo.</span><span>Mow the Mo.</span><span class="d">You decide.</span></h1>
+    <p class="lede">Every dollar is a vote. Whichever side has raised more when November ends decides my moustache’s fate: it stays for a whole year, or it comes off on 30 November.</p>
+    <div class="clock" aria-live="off">
+      <div><b id="cd-d">–</b><small>days</small></div>
+      <div><b id="cd-h">–</b><small>hours</small></div>
+      <div><b id="cd-m">–</b><small>minutes</small></div>
+    </div>
+    <p class="clock-note" id="clock-note">Until voting closes at 11:59 pm on 30 November, NZ time.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card rule score" aria-labelledby="score-h">
+    <h2 id="score-h">The scoreboard.</h2>
+    <div class="tug" role="img" id="tug" aria-label="">
+      <div class="fg" id="fg"></div>
+      <div class="fm" id="fm"></div>
+      <svg class="knot" id="knot" viewBox="-4 -4 128 52" aria-hidden="true">
+        <path fill="#966034" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" d="M60 14c-6-7-16-9-26-4C24 15 18 24 7 23 2 22 0 18 3 14c-6 3-3 14 6 16 15 3 26-5 36-7 7-1 12 0 15 3 3-3 8-4 15-3 10 2 21 10 36 7 9-2 12-13 6-16 3 4 1 8-4 9-11 1-17-8-27-13-10-5-20-3-26 4z"/>
+      </svg>
+    </div>
+    <div class="totals">
+      <div class="g"><small>Grow the Mo</small><span id="t-grow">$0</span></div>
+      <div class="m"><small>Mow the Mo</small><span id="t-mow">$0</span></div>
+    </div>
+    <p class="status" id="status"></p>
+    <p class="updated" id="updated"></p>
+  </section>
+
+  <section class="teams" aria-label="Pick your side">
+    <article class="card team grow">
+      <img src="assets/grow-the-mo.gif" alt="Animated brown moustache growing into a full handlebar from day 1 to day 365">
+      <div class="body">
+        <h3>Grow the Mo.</h3>
+        <p>If Grow wins, the mo stays until 30 November 2027. No trims for work photos, weddings or meetings. A full year of commitment.</p>
+        <a class="btn" id="btn-grow" href="#" target="_blank" rel="noopener">Donate to Grow the Mo</a>
+      </div>
+    </article>
+    <article class="card team mow">
+      <img src="assets/mow-the-mo.gif" alt="Animated green lawnmower driving across a brown moustache and mowing it off">
+      <div class="body">
+        <h3>Mow the Mo.</h3>
+        <p>If Mow wins, it comes off at the end of November and my top lip sees daylight again. Probably on camera.</p>
+        <a class="btn" id="btn-mow" href="#" target="_blank" rel="noopener">Donate to Mow the Mo</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="info">
+    <div class="card">
+      <h2>The rules.</h2>
+      <ul>
+        <li>Donate to either page. You can back both sides if you like chaos.</li>
+        <li>Voting closes at 11:59 pm on 30 November, NZ time.</li>
+        <li>The side with the higher total wins. A tie goes to Grow.</li>
+        <li>Every dollar goes to Movember either way, so the only possible loser is my face.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Why I’m doing this.</h2>
+      <p>Every dollar raised supports Movember’s work in men’s mental health and suicide prevention, helping Kiwis who are doing it tough. Some struggle openly, while others fight their battles behind closed doors.</p>
+      <p>So whether your donation condemns my wife to another year of questionable facial hair or restores some dignity to my upper lip, more importantly, it’ll help support fellow New Zealanders through some of life’s toughest moments.</p>
+      <p>Thanks in advance for your generosity!</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Both pages are part of the <a href="https://nz.movember.com/team/2371566" target="_blank" rel="noopener">Great Mo Showdown team</a> on Movember. Recruit your side.</p>
+    <div>
+      <button type="button" id="copy">Copy link to this page</button>
+      <span class="copied" id="copied" role="status"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Totals come from data/totals.json, which a GitHub Action refreshes every 30 minutes. */
+const CONFIG = {
+  growUrl: "https://movember.com/m/nicktayls?mc=1",
+  mowUrl: "https://movember.com/m/14257431?mc=1",
+  growTotal: 0,
+  mowTotal: 0,
+  updated: "",
+  closes: "2026-11-30T23:59:59+13:00"
+};
+
+const $ = id => document.getElementById(id);
+const fmt = n => "$" + Math.round(n).toLocaleString("en-NZ");
+
+for (const [id, url] of [["btn-grow", CONFIG.growUrl], ["btn-mow", CONFIG.mowUrl]]) {
+  const a = $(id);
+  if (url) a.href = url;
+  else { a.setAttribute("aria-disabled", "true"); a.addEventListener("click", e => { e.preventDefault(); a.textContent = "Link coming soon"; }); }
+}
+
+function renderScore(){
+  const g = CONFIG.growTotal, m = CONFIG.mowTotal, sum = g + m;
+  const pct = Math.min(0.92, Math.max(0.08, sum ? g / sum : 0.5)) * 100;
+  $("fg").style.width = pct + "%";
+  $("fm").style.width = (100 - pct) + "%";
+  $("knot").style.left = pct + "%";
+  $("t-grow").textContent = fmt(g);
+  $("t-mow").textContent = fmt(m);
+  const closed = Date.now() > Date.parse(CONFIG.closes);
+  let s;
+  if (!sum) s = "No votes yet. Your donation sets the first lead.";
+  else if (g === m) s = closed ? "A dead heat, so the tie rule applies. The mo stays." : "Dead even. A tie goes to Grow, so Mow needs one more dollar.";
+  else {
+    const lead = g > m ? "Grow the Mo" : "Mow the Mo", by = fmt(Math.abs(g - m));
+    s = closed ? `${lead} wins by ${by}. Thank you, everyone.` : `${lead} leads by ${by}.`;
+  }
+  $("status").textContent = s;
+  const when = CONFIG.updated ? new Date(CONFIG.updated).toLocaleString("en-NZ", {timeZone: "Pacific/Auckland", day: "numeric", month: "long", hour: "numeric", minute: "2-digit"}) : "";
+  $("updated").textContent = (when ? `Totals updated ${when}. ` : "") + `Raised together: ${fmt(sum)}.`;
+  $("tug").setAttribute("aria-label", `Grow the Mo ${fmt(g)}, Mow the Mo ${fmt(m)}`);
+}
+
+function tick(){
+  const ms = Date.parse(CONFIG.closes) - Date.now();
+  if (ms <= 0) {
+    $("cd-d").textContent = $("cd-h").textContent = $("cd-m").textContent = "0";
+    $("clock-note").textContent = "Voting has closed.";
+    return;
+  }
+  const mins = Math.floor(ms / 60000);
+  $("cd-d").textContent = Math.floor(mins / 1440);
+  $("cd-h").textContent = Math.floor(mins % 1440 / 60);
+  $("cd-m").textContent = mins % 60;
+}
+
+$("copy").addEventListener("click", async () => {
+  const url = location.href.split("#")[0];
+  try { await navigator.clipboard.writeText(url); $("copied").textContent = "Link copied."; }
+  catch { $("copied").textContent = url; }
+});
+
+async function loadTotals(){
+  try {
+    const r = await fetch("data/totals.json", {cache: "no-store"});
+    if (!r.ok) throw new Error(r.status);
+    const t = await r.json();
+    CONFIG.growTotal = Number(t.grow) || 0;
+    CONFIG.mowTotal = Number(t.mow) || 0;
+    CONFIG.updated = t.updated || "";
+  } catch (e) { /* keep the last values shown */ }
+  renderScore();
+}
+
+renderScore(); loadTotals(); tick();
+setInterval(tick, 30000);
+setInterval(loadTotals, 5 * 60 * 1000);
+</script>
+</body>
+</html>
