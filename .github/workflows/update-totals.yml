@@ -2,7 +2,7 @@ name: Update Mo totals
 
 on:
   schedule:
-    - cron: "7,37 * * * *"   # every 30 minutes (off the hour, when GitHub is less busy)
+       - cron: "3,13,23,33,43,53 * * * *"   # every 10 minutes
   workflow_dispatch:          # lets you run it by hand from the Actions tab
 
 permissions:
